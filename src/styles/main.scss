@@ -1,10 +1,8 @@
-@import "variables";
-@import "mixins";
+@use "./base/variables";
+@use "./base/mixins";
 
-body {
-    background-color: $color-secundario;
-}
+@use "./layout/header";
+@use "./layout/navbar";
 
-.card {
-    @include card;
-}
+@use "./pages/dashboard";
+@use "./pages/retiro";

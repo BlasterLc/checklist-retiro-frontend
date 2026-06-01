@@ -1,20 +1,34 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-import Home from "../pages/Home/Home";
-import CheckIn from "../pages/CheckIn/CheckIn";
-import Dashboard from "../pages/Dashboard/Dashboard";
-import Contacto from "../pages/Contacto/Contacto";
+import NuevoRetiro from "../pages/NuevoRetiro";
+import Dashboard from "../pages/Dashboard";
+import Contacto from "../pages/Contacto";
 
 function AppRouter() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/checkin" element={<CheckIn />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/contacto" element={<Contacto />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+
+      <Route
+        path="/"
+        element={<Navigate to="/retiro" />}
+      />
+
+      <Route
+        path="/retiro"
+        element={<NuevoRetiro />}
+      />
+
+      <Route
+        path="/dashboard"
+        element={<Dashboard />}
+      />
+
+      <Route
+        path="/contacto"
+        element={<Contacto />}
+      />
+
+    </Routes>
   );
 }
 
