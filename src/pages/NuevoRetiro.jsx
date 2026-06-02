@@ -4,7 +4,7 @@ import StepOperador from "../components/Flujo/StepOperador";
 import StepCliente from "../components/Flujo/StepCliente";
 import StepDocumento from "../components/Flujo/StepDocumento";
 import StepTipoRetiro from "../components/Flujo/StepTipoRetiro";
-
+import StepAutorizacion from "../components/Flujo/StepAutorizacion";
 function NuevoRetiro() {
 
 const [paso, setPaso] = useState(1);
@@ -25,6 +25,8 @@ const [paso, setPaso] = useState(1);
 
     tercero: "",
     autorizacion: false,
+    numeroAutorizacion: "",
+    observaciones: "",
 
     producto: null
   });
@@ -63,7 +65,10 @@ const [paso, setPaso] = useState(1);
       )}
 
       {paso === 5 && (
-        <h2>Autorización</h2>
+        <StepAutorizacion
+          formulario={formulario}
+          setFormulario={setFormulario}
+        />
       )}
 
       {paso === 6 && (
@@ -88,9 +93,56 @@ const [paso, setPaso] = useState(1);
 
         <button
           onClick={() => {
+
+            if (
+              paso === 1 &&
+              (!formulario.operador || !formulario.sucursal)
+            ) {
+              alert("Complete los datos del operador");
+              return;
+            }
+
+            if (
+              paso === 2 &&
+              !formulario.cliente
+            ) {
+              alert("Ingrese el nombre del cliente");
+              return;
+            }
+
+            if (
+              paso === 3 &&
+              (
+                !formulario.tipoDocumento ||
+                !formulario.numeroDocumento ||
+                !formulario.fechaVencimiento
+              )
+            ) {
+              alert("Complete los datos del documento");
+              return;
+            }
+
+            if (
+              paso === 4 &&
+              !formulario.tipoRetiro
+            ) {
+              alert("Seleccione quién retira");
+              return;
+            }
+
+            if (
+              paso === 5 &&
+              formulario.tipoRetiro === "tercero" &&
+              !formulario.autorizacion
+            ) {
+              alert("Debe existir autorización");
+              return;
+            }
+
             if (paso < 7) {
               setPaso(paso + 1);
             }
+
           }}
         >
           Siguiente
