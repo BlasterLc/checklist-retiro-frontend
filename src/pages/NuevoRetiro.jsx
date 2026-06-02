@@ -3,6 +3,7 @@ import Stepper from "../components/Flujo/Stepper";
 import StepOperador from "../components/Flujo/StepOperador";
 import StepCliente from "../components/Flujo/StepCliente";
 import StepDocumento from "../components/Flujo/StepDocumento";
+import StepTipoRetiro from "../components/Flujo/StepTipoRetiro";
 
 function NuevoRetiro() {
 
@@ -55,7 +56,10 @@ const [paso, setPaso] = useState(1);
       )}
 
       {paso === 4 && (
-        <h2>Tipo de Retiro</h2>
+        <StepTipoRetiro
+          formulario={formulario}
+          setFormulario={setFormulario}
+        />
       )}
 
       {paso === 5 && (
@@ -70,20 +74,32 @@ const [paso, setPaso] = useState(1);
         <h2>Confirmación</h2>
       )}
 
-      <button
-        onClick={() => {
-          if (paso < 7) {
-            setPaso(paso + 1);
-          }
-        }}
-      >
-        Siguiente
-      </button>
+      <div className="acciones">
+
+        <button
+          onClick={() => {
+            if (paso > 1) {
+              setPaso(paso - 1);
+            }
+          }}
+        >
+          Anterior
+        </button>
+
+        <button
+          onClick={() => {
+            if (paso < 7) {
+              setPaso(paso + 1);
+            }
+          }}
+        >
+          Siguiente
+        </button>
+
+      </div>
 
     </div>
   );
 }
-
-
 
 export default NuevoRetiro;
