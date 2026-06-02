@@ -2,6 +2,7 @@ import { useState } from "react";
 import Stepper from "../components/Flujo/Stepper";
 import StepOperador from "../components/Flujo/StepOperador";
 import StepCliente from "../components/Flujo/StepCliente";
+import StepDocumento from "../components/Flujo/StepDocumento";
 
 function NuevoRetiro() {
 
@@ -16,7 +17,7 @@ const [paso, setPaso] = useState(1);
 
     tipoDocumento: "",
     numeroDocumento: "",
-
+    fechaVencimiento: "",
     documentoVigente: false,
 
     tipoRetiro: "",
@@ -47,7 +48,10 @@ const [paso, setPaso] = useState(1);
       )}
 
       {paso === 3 && (
-        <h2>Documento</h2>
+        <StepDocumento
+          formulario={formulario}
+          setFormulario={setFormulario}
+        />
       )}
 
       {paso === 4 && (
