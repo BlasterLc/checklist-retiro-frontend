@@ -113,3 +113,27 @@ select {
 
   border-radius: 4px;
 }
+
+.acciones {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 2rem;
+}
+
+.acciones button {
+  padding: .75rem 1.5rem;
+
+  border: none;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+}
+
+.acciones button:hover {
+  opacity: .9;
+}
