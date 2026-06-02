@@ -1,3 +1,4 @@
+import TablaRetiros from "../components/Dashboard/TablaRetiros";
 import { useRetiros } from "../context/RetiroContext";
 
 function Dashboard() {
@@ -48,6 +49,8 @@ function Dashboard() {
         </div>
 
       </div>
+
+      <TablaRetiros />
 
     </div>
 
