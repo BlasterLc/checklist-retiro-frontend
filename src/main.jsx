@@ -1,15 +1,23 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 
-import './index.css'
-import './styles/main.scss'
-import App from './App.jsx'
+import { RetiroProvider } from "./context/RetiroContext";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+import "./index.css";
+import "./styles/main.scss";
+
+import App from "./App.jsx";
+
+createRoot(document.getElementById("root")).render(
+
+  <RetiroProvider>
+
     <BrowserRouter>
+
       <App />
+
     </BrowserRouter>
-  </StrictMode>
-)
+
+  </RetiroProvider>
+
+);

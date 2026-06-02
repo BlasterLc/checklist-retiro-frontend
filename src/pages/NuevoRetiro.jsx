@@ -7,12 +7,13 @@ import StepTipoRetiro from "../components/Flujo/StepTipoRetiro";
 import StepAutorizacion from "../components/Flujo/StepAutorizacion";
 import StepProducto from "../components/Flujo/StepProducto";
 import StepConfirmacion from "../components/Flujo/StepConfirmacion";
+import { useRetiros } from "../context/RetiroContext";
 
 
 function NuevoRetiro() {
 
 const [paso, setPaso] = useState(1);
-const [retiros, setRetiros] = useState([]);
+const { retiros, setRetiros } = useRetiros();
 
 const [formulario, setFormulario] = useState({
 
