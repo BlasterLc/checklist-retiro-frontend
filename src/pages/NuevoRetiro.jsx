@@ -5,6 +5,9 @@ import StepCliente from "../components/Flujo/StepCliente";
 import StepDocumento from "../components/Flujo/StepDocumento";
 import StepTipoRetiro from "../components/Flujo/StepTipoRetiro";
 import StepAutorizacion from "../components/Flujo/StepAutorizacion";
+import StepProducto from "../components/Flujo/StepProducto";
+
+
 function NuevoRetiro() {
 
 const [paso, setPaso] = useState(1);
@@ -72,7 +75,10 @@ const [paso, setPaso] = useState(1);
       )}
 
       {paso === 6 && (
-        <h2>Producto</h2>
+        <StepProducto
+          formulario={formulario}
+          setFormulario={setFormulario}
+        />
       )}
 
       {paso === 7 && (
@@ -136,6 +142,14 @@ const [paso, setPaso] = useState(1);
               !formulario.autorizacion
             ) {
               alert("Debe existir autorización");
+              return;
+            }
+
+            if (
+              paso === 6 &&
+              !formulario.producto
+            ) {
+              alert("Seleccione un producto");
               return;
             }
 
