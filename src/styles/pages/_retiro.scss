@@ -157,3 +157,35 @@ select {
 .producto-card button {
   margin-top: 1rem;
 }
+
+.resumen {
+  background: #fafafa;
+
+  padding: 1.5rem;
+
+  border-radius: 8px;
+
+  border: 1px solid #ddd;
+}
+
+.resumen h3 {
+  margin-top: 1rem;
+}
+
+.btn-confirmar {
+  margin-top: 2rem;
+
+  width: 100%;
+
+  padding: 1rem;
+
+  font-size: 1rem;
+
+  font-weight: bold;
+
+  border: none;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+}

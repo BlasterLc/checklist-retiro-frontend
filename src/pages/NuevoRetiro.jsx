@@ -6,14 +6,55 @@ import StepDocumento from "../components/Flujo/StepDocumento";
 import StepTipoRetiro from "../components/Flujo/StepTipoRetiro";
 import StepAutorizacion from "../components/Flujo/StepAutorizacion";
 import StepProducto from "../components/Flujo/StepProducto";
+import StepConfirmacion from "../components/Flujo/StepConfirmacion";
 
 
 function NuevoRetiro() {
 
 const [paso, setPaso] = useState(1);
+const [retiros, setRetiros] = useState([]);
 
-  const [formulario, setFormulario] = useState({
+const [formulario, setFormulario] = useState({
 
+  operador: "",
+  sucursal: "",
+
+  cliente: "",
+
+  tipoDocumento: "",
+  numeroDocumento: "",
+  fechaVencimiento: "",
+
+  documentoVigente: false,
+
+  tipoRetiro: "",
+
+  tercero: "",
+  autorizacion: false,
+
+  numeroAutorizacion: "",
+  observaciones: "",
+
+  producto: null
+});
+
+const confirmarEntrega = () => {
+
+  const nuevoRetiro = {
+    id: Date.now(),
+    fecha: new Date().toLocaleString(),
+    estado: "Aprobado",
+    ...formulario
+  };
+
+  setRetiros(prev => [
+    nuevoRetiro,
+    ...prev
+  ]);
+
+  alert("Entrega registrada correctamente");
+
+  setFormulario({
     operador: "",
     sucursal: "",
 
@@ -22,17 +63,22 @@ const [paso, setPaso] = useState(1);
     tipoDocumento: "",
     numeroDocumento: "",
     fechaVencimiento: "",
+
     documentoVigente: false,
 
     tipoRetiro: "",
 
     tercero: "",
     autorizacion: false,
+
     numeroAutorizacion: "",
     observaciones: "",
 
     producto: null
   });
+
+  setPaso(1);
+};
 
   return (
     <div className="retiro-container">
@@ -82,7 +128,10 @@ const [paso, setPaso] = useState(1);
       )}
 
       {paso === 7 && (
-        <h2>Confirmación</h2>
+        <StepConfirmacion
+          formulario={formulario}
+          confirmarEntrega={confirmarEntrega}
+        />
       )}
 
       <div className="acciones">
