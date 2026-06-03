@@ -1,5 +1,7 @@
 import TablaRetiros from "../components/Dashboard/TablaRetiros";
 import { useRetiros } from "../context/RetiroContext";
+import GraficoEstados from "../components/Dashboard/GraficoEstados";
+import GraficoMotivos from "../components/Dashboard/GraficoMotivos";
 
 function Dashboard() {
 
@@ -49,11 +51,18 @@ function Dashboard() {
         </div>
 
       </div>
+      
+      <div className="graficos-container">
+
+        <GraficoEstados />
+
+        <GraficoMotivos />
+
+      </div>
 
       <TablaRetiros />
 
     </div>
-
   );
 }
 
