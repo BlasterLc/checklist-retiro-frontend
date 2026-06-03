@@ -67,3 +67,29 @@
 .tabla-retiros th {
   font-weight: bold;
 }
+
+.estado-ok {
+
+  background: #d4edda;
+
+  color: #155724;
+
+  padding: .3rem .7rem;
+
+  border-radius: 20px;
+
+  font-weight: bold;
+}
+
+.estado-error {
+
+  background: #f8d7da;
+
+  color: #721c24;
+
+  padding: .3rem .7rem;
+
+  border-radius: 20px;
+
+  font-weight: bold;
+}

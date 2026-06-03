@@ -53,7 +53,19 @@ function TablaRetiros() {
                 </td>
 
                 <td>
-                  {retiro.estado}
+
+                <span
+                    className={
+                    retiro.estado === "Aprobado"
+                        ? "estado-ok"
+                        : "estado-error"
+                    }
+                >
+
+                    {retiro.estado}
+
+                </span>
+
                 </td>
 
               </tr>
