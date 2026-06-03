@@ -1,75 +1,61 @@
 import {
-  PieChart,
-  Pie,
-  Cell,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
   Tooltip,
   ResponsiveContainer
 } from "recharts";
 
 import { useRetiros } from "../../context/RetiroContext";
 
-function GraficoEstados() {
+function GraficoMotivos() {
 
   const { retiros } = useRetiros();
 
-  const aprobados = retiros.filter(
-    r => r.estado === "Aprobado"
-  ).length;
+  const conteo = {};
 
-  const rechazados = retiros.filter(
-    r => r.estado === "Rechazado"
-  ).length;
+  retiros.forEach(retiro => {
 
-  const data = [
-    {
-      name: "Aprobados",
-      value: aprobados
-    },
-    {
-      name: "Rechazados",
-      value: rechazados
+    if (
+      retiro.estado === "Rechazado"
+    ) {
+
+      conteo[retiro.motivo] =
+        (conteo[retiro.motivo] || 0) + 1;
     }
-  ];
 
-  const COLORS = [
-    "#28a745",
-    "#dc3545"
-  ];
+  });
+
+  const data = Object.keys(conteo).map(
+    motivo => ({
+      motivo,
+      cantidad: conteo[motivo]
+    })
+  );
 
   return (
 
     <div className="grafico-card">
 
-      <h2>Aprobados vs Rechazados</h2>
+      <h2>Motivos de Rechazo</h2>
 
       <ResponsiveContainer
         width="100%"
         height={300}
       >
 
-        <PieChart>
+        <BarChart data={data}>
 
-          <Pie
-            data={data}
-            dataKey="value"
-            nameKey="name"
-            outerRadius={100}
-          >
+          <XAxis dataKey="motivo" />
 
-            {data.map((entry, index) => (
-
-              <Cell
-                key={index}
-                fill={COLORS[index]}
-              />
-
-            ))}
-
-          </Pie>
+          <YAxis />
 
           <Tooltip />
 
-        </PieChart>
+          <Bar dataKey="cantidad" />
+
+        </BarChart>
 
       </ResponsiveContainer>
 
@@ -78,4 +64,4 @@ function GraficoEstados() {
   );
 }
 
-export default GraficoEstados;
+export default GraficoMotivos;
