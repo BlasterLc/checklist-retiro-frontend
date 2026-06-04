@@ -2,6 +2,10 @@ import TablaRetiros from "../components/Dashboard/TablaRetiros";
 import { useRetiros } from "../context/RetiroContext";
 import GraficoEstados from "../components/Dashboard/GraficoEstados";
 import GraficoMotivos from "../components/Dashboard/GraficoMotivos";
+import GraficoSucursales from "../components/Dashboard/GraficoSucursales";
+import GraficoOperadores from "../components/Dashboard/GraficoOperadores";
+import GraficoTipoRetiro from "../components/Dashboard/GraficoTipoRetiro";
+import GraficoProductos from "../components/Dashboard/GraficoProductos";
 
 function Dashboard() {
 
@@ -57,6 +61,14 @@ function Dashboard() {
         <GraficoEstados />
 
         <GraficoMotivos />
+
+        <GraficoSucursales />
+
+        <GraficoOperadores />
+
+        <GraficoTipoRetiro />
+
+        <GraficoProductos />
 
       </div>
 
