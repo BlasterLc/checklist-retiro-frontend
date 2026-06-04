@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import NuevoRetiro from "../pages/NuevoRetiro";
 import Dashboard from "../pages/Dashboard";
 import Contacto from "../pages/Contacto";
+import Home from "../pages/Home";
 
 function AppRouter() {
   return (
@@ -10,7 +11,7 @@ function AppRouter() {
 
       <Route
         path="/"
-        element={<Navigate to="/retiro" />}
+        element={<Home />}
       />
 
       <Route
