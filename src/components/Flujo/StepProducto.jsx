@@ -27,6 +27,7 @@ function StepProducto({ formulario, setFormulario }) {
         <input
           type="text"
           value={codigo}
+          placeholder="Ej: TV001"
           onChange={(e) =>
             setCodigo(e.target.value)
           }
@@ -39,19 +40,45 @@ function StepProducto({ formulario, setFormulario }) {
       </button>
 
       {resultado && (
+
         <div className="producto-card">
 
-          <h3>{resultado.codigo}</h3>
-
-          <p>
+          <h3>
             {resultado.descripcion}
+          </h3>
+
+          <p>
+            <strong>Código:</strong>
+            {" "}
+            {resultado.codigo}
           </p>
 
           <p>
-            Estado: {resultado.estado}
+            <strong>Estado:</strong>
+            {" "}
+            {resultado.estado}
           </p>
+
+          <p>
+            <strong>Stock:</strong>
+            {" "}
+            {resultado.stock}
+          </p>
+
+          <div
+            className={
+              resultado.stock > 0
+                ? "estado-documento ok"
+                : "estado-documento error"
+            }
+          >
+            {resultado.stock > 0
+              ? "Disponible para entrega"
+              : "Sin stock"}
+          </div>
 
           <button
+            disabled={resultado.stock <= 0}
             onClick={() =>
               setFormulario({
                 ...formulario,
@@ -59,25 +86,43 @@ function StepProducto({ formulario, setFormulario }) {
               })
             }
           >
-            Seleccionar
+            Seleccionar Pedido
           </button>
 
         </div>
+
       )}
 
       {!resultado && codigo && (
+
         <div className="estado-documento error">
           Pedido no encontrado.
         </div>
+
       )}
 
       {formulario.producto && (
+
         <div className="estado-documento ok">
+
           Producto seleccionado:
+
+          <br />
+
+          <strong>
+            {formulario.producto.descripcion}
+          </strong>
+
+          <br />
+
+          Código:
           {" "}
-          {formulario.producto.descripcion}
+          {formulario.producto.codigo}
+
         </div>
+
       )}
+
     </>
   );
 }
