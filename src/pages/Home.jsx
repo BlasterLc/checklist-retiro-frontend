@@ -49,15 +49,8 @@ function Home() {
 
         <h2>Resumen Operacional</h2>
 
-        <div className="graficos-container">
-
-          <GraficoEstados />
-
-          <GraficoMotivos />
-
-        </div>
-
         <TablaRetiros />
+
 
       </section>
 
