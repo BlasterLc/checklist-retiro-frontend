@@ -8,32 +8,32 @@ function Contacto() {
 
         <div className="contacto-card">
           <h2>Integrante 1</h2>
-          <p>Nombre Completo</p>
-          <p>Correo Institucional</p>
+          <p>Ignacion Veloso</p>
+          <p>ivelosob@correo.uss.cl</p>
         </div>
 
         <div className="contacto-card">
           <h2>Integrante 2</h2>
-          <p>Nombre Completo</p>
-          <p>Correo Institucional</p>
+          <p>Ignacio Castro</p>
+          <p>icastror2@correo.uss.cl</p>
         </div>
 
         <div className="contacto-card">
           <h2>Integrante 3</h2>
-          <p>Nombre Completo</p>
-          <p>Correo Institucional</p>
+          <p>Jhonatan Godoy</p>
+          <p>jgodoyr4@correo.uss.cl</p>
         </div>
 
         <div className="contacto-card">
           <h2>Integrante 4</h2>
-          <p>Nombre Completo</p>
-          <p>Correo Institucional</p>
+          <p>Matías Rodríguez</p>
+          <p>mrodriguezg8@correo.uss.cl</p>
         </div>
 
         <div className="contacto-card">
           <h2>Integrante 5</h2>
-          <p>Nombre Completo</p>
-          <p>Correo Institucional</p>
+          <p>Matías Pérez</p>
+          <p>mpereza16@correo.uss.cl</p>
         </div>
 
       </div>
