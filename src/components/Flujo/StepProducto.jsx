@@ -77,7 +77,7 @@ function StepProducto({ formulario, setFormulario }) {
 
       </div>
 
-      <button onClick={buscarProducto}>
+      <button className="btn-buscar" onClick={buscarProducto}>
         Buscar Pedido
       </button>
 
@@ -117,6 +117,7 @@ function StepProducto({ formulario, setFormulario }) {
           </div>
 
           <button
+            className="btn-seleccionar"
             disabled={resultado.stock <= 0}
             onClick={() =>
               setFormulario({
