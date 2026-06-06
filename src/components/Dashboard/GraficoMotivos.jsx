@@ -53,7 +53,8 @@ function GraficoMotivos() {
 
           <Tooltip />
 
-          <Bar dataKey="cantidad" />
+          <Bar dataKey="cantidad" 
+          fill="#1976d2"/>
 
         </BarChart>
 
