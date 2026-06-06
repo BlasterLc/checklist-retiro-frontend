@@ -53,6 +53,7 @@ function GraficoSucursales() {
 
           <Bar
             dataKey="cantidad"
+            fill="#1976d2"
           />
 
         </BarChart>
