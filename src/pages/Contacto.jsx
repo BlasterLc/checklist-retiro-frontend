@@ -8,7 +8,7 @@ function Contacto() {
 
         <div className="contacto-card">
           <h2>Integrante 1</h2>
-          <p>Ignacion Veloso</p>
+          <p>Ignacio Veloso</p>
           <p>ivelosob@correo.uss.cl</p>
         </div>
 
@@ -43,7 +43,7 @@ function Contacto() {
         <h2>Información del Proyecto</h2>
 
         <p>
-          <strong>Asignatura:</strong> Tecnologías Web
+          <strong>Asignatura:</strong> Aplicaciones y Tecnologías de la Web
         </p>
 
         <p>
@@ -51,7 +51,7 @@ function Contacto() {
         </p>
 
         <p>
-          <strong>Institución:</strong> Universad San Sebastían
+          <strong>Institución:</strong> Universidad San Sebastían
         </p>
 
         <p>

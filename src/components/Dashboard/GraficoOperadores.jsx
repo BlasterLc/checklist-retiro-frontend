@@ -53,6 +53,7 @@ function GraficoOperadores() {
 
           <Bar
             dataKey="cantidad"
+            fill="#1976d2"
           />
 
         </BarChart>
