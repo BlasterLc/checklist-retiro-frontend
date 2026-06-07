@@ -182,6 +182,40 @@ select {
   margin-top: 1rem;
 }
 
+.btn-buscar {
+  padding: .75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #1e3a8a;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: .5rem;
+
+  &:hover {
+    background-color: #1e40af;
+  }
+}
+
+.btn-seleccionar {
+  padding: .75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #22c55e;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #16a34a;
+  }
+
+  &:disabled {
+    background-color: #bdbdbd;
+    cursor: not-allowed;
+  }
+}
+
 .resumen {
   background: #fafafa;
 
