@@ -110,6 +110,16 @@
   font-weight: bold;
 }
 
+.fecha-vencimiento-selects {
+  display: flex;
+
+  gap: .5rem;
+
+  select {
+    flex: 1;
+  }
+}
+
 .estado-documento {
   margin-top: 1rem;
 
