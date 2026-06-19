@@ -1,3 +1,28 @@
+const MESES = [
+  { valor: "01", nombre: "Enero" },
+  { valor: "02", nombre: "Febrero" },
+  { valor: "03", nombre: "Marzo" },
+  { valor: "04", nombre: "Abril" },
+  { valor: "05", nombre: "Mayo" },
+  { valor: "06", nombre: "Junio" },
+  { valor: "07", nombre: "Julio" },
+  { valor: "08", nombre: "Agosto" },
+  { valor: "09", nombre: "Septiembre" },
+  { valor: "10", nombre: "Octubre" },
+  { valor: "11", nombre: "Noviembre" },
+  { valor: "12", nombre: "Diciembre" }
+];
+
+function diasEnMes(anio, mes) {
+
+  if (!anio || !mes) {
+    return 31;
+  }
+
+  return new Date(Number(anio), Number(mes), 0).getDate();
+
+}
+
 function StepDocumento({
   formulario,
   setFormulario,
@@ -8,9 +33,46 @@ function StepDocumento({
     formulario.fechaVencimiento &&
     new Date(formulario.fechaVencimiento) < new Date();
 
-  const fechaMaxima = new Date();
-  fechaMaxima.setFullYear(fechaMaxima.getFullYear() + 20);
-  const fechaMaximaTexto = fechaMaxima.toISOString().split("T")[0];
+  const anioActual = new Date().getFullYear();
+  const anioMinimo = anioActual - 20;
+  const anioMaximo = anioActual + 20;
+
+  const anios = [];
+  for (let a = anioMinimo; a <= anioMaximo; a++) {
+    anios.push(a);
+  }
+
+  const [anioSel, mesSel, diaSel] = formulario.fechaVencimiento
+    ? formulario.fechaVencimiento.split("-")
+    : ["", "", ""];
+
+  const dias = [];
+  for (let d = 1; d <= diasEnMes(anioSel, mesSel); d++) {
+    dias.push(d);
+  }
+
+  const actualizarFecha = (anio, mes, dia) => {
+
+    if (!anio || !mes || !dia) {
+
+      setFormulario({
+        ...formulario,
+        fechaVencimiento: ""
+      });
+
+      return;
+
+    }
+
+    const diaFinal = Math.min(Number(dia), diasEnMes(anio, mes));
+
+    setFormulario({
+      ...formulario,
+      fechaVencimiento:
+        `${anio}-${mes}-${String(diaFinal).padStart(2, "0")}`
+    });
+
+  };
 
   return (
     <>
@@ -68,7 +130,7 @@ function StepDocumento({
             if (e.key === "Enter") {
 
               document
-                .getElementById("fechaVencimiento")
+                .getElementById("diaVencimiento")
                 .focus();
 
             }
@@ -82,33 +144,85 @@ function StepDocumento({
 
         <label>Fecha de Vencimiento</label>
 
-        <input
-          id="fechaVencimiento"
-          type="date"
-          max={fechaMaximaTexto}
-          value={formulario.fechaVencimiento || ""}
-          onChange={(e) => {
+        <div className="fecha-vencimiento-selects">
 
-            if (e.target.value && new Date(e.target.value) > fechaMaxima) {
-              return;
+          <select
+            id="diaVencimiento"
+            value={diaSel}
+            onChange={(e) =>
+              actualizarFecha(anioSel, mesSel, e.target.value)
             }
+            onKeyDown={(e) => {
 
-            setFormulario({
-              ...formulario,
-              fechaVencimiento: e.target.value
-            });
+              if (e.key === "Enter") {
 
-          }}
-          onKeyDown={(e) => {
+                document
+                  .getElementById("mesVencimiento")
+                  .focus();
 
-            if (e.key === "Enter") {
+              }
 
-              avanzarPaso();
+            }}
+          >
+            <option value="">Día</option>
+            {dias.map((d) => (
+              <option key={d} value={String(d).padStart(2, "0")}>
+                {d}
+              </option>
+            ))}
+          </select>
 
+          <select
+            id="mesVencimiento"
+            value={mesSel}
+            onChange={(e) =>
+              actualizarFecha(anioSel, e.target.value, diaSel)
             }
+            onKeyDown={(e) => {
 
-          }}
-        />
+              if (e.key === "Enter") {
+
+                document
+                  .getElementById("anioVencimiento")
+                  .focus();
+
+              }
+
+            }}
+          >
+            <option value="">Mes</option>
+            {MESES.map((m) => (
+              <option key={m.valor} value={m.valor}>
+                {m.nombre}
+              </option>
+            ))}
+          </select>
+
+          <select
+            id="anioVencimiento"
+            value={anioSel}
+            onChange={(e) =>
+              actualizarFecha(e.target.value, mesSel, diaSel)
+            }
+            onKeyDown={(e) => {
+
+              if (e.key === "Enter") {
+
+                avanzarPaso();
+
+              }
+
+            }}
+          >
+            <option value="">Año</option>
+            {anios.map((a) => (
+              <option key={a} value={a}>
+                {a}
+              </option>
+            ))}
+          </select>
+
+        </div>
 
       </div>
 
