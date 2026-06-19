@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const MESES = [
   { valor: "01", nombre: "Enero" },
   { valor: "02", nombre: "Febrero" },
@@ -43,9 +45,13 @@ function StepDocumento({
     anios.push(a);
   }
 
-  const [anioSel, mesSel, diaSel] = formulario.fechaVencimiento
+  const partes = formulario.fechaVencimiento
     ? formulario.fechaVencimiento.split("-")
     : ["", "", ""];
+
+  const [anioSel, setAnioSel] = useState(partes[0]);
+  const [mesSel, setMesSel] = useState(partes[1]);
+  const [diaSel, setDiaSel] = useState(partes[2]);
 
   const dias = [];
   for (let d = 1; d <= diasEnMes(anioSel, mesSel); d++) {
@@ -55,14 +61,11 @@ function StepDocumento({
   const actualizarFecha = (anio, mes, dia) => {
 
     if (!anio || !mes || !dia) {
-
       setFormulario({
         ...formulario,
         fechaVencimiento: ""
       });
-
       return;
-
     }
 
     const diaFinal = Math.min(Number(dia), diasEnMes(anio, mes));
@@ -150,9 +153,10 @@ function StepDocumento({
           <select
             id="diaVencimiento"
             value={diaSel}
-            onChange={(e) =>
-              actualizarFecha(anioSel, mesSel, e.target.value)
-            }
+            onChange={(e) => {
+              setDiaSel(e.target.value);
+              actualizarFecha(anioSel, mesSel, e.target.value);
+            }}
             onKeyDown={(e) => {
 
               if (e.key === "Enter") {
@@ -176,9 +180,10 @@ function StepDocumento({
           <select
             id="mesVencimiento"
             value={mesSel}
-            onChange={(e) =>
-              actualizarFecha(anioSel, e.target.value, diaSel)
-            }
+            onChange={(e) => {
+              setMesSel(e.target.value);
+              actualizarFecha(anioSel, e.target.value, diaSel);
+            }}
             onKeyDown={(e) => {
 
               if (e.key === "Enter") {
@@ -202,9 +207,10 @@ function StepDocumento({
           <select
             id="anioVencimiento"
             value={anioSel}
-            onChange={(e) =>
-              actualizarFecha(e.target.value, mesSel, diaSel)
-            }
+            onChange={(e) => {
+              setAnioSel(e.target.value);
+              actualizarFecha(e.target.value, mesSel, diaSel);
+            }}
             onKeyDown={(e) => {
 
               if (e.key === "Enter") {
