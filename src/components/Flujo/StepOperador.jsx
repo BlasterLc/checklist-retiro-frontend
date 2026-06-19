@@ -41,9 +41,8 @@ function StepOperador({
 
         <label>Sucursal</label>
 
-        <input
+        <select
           id="sucursal"
-          type="text"
           value={formulario.sucursal}
           onChange={(e) =>
             setFormulario({
@@ -60,7 +59,12 @@ function StepOperador({
             }
 
           }}
-        />
+        >
+          <option value="">Seleccione</option>
+          <option value="Sucursal A">Sucursal A</option>
+          <option value="Sucursal B">Sucursal B</option>
+          <option value="Sucursal C">Sucursal C</option>
+        </select>
 
       </div>
 
