@@ -7,52 +7,44 @@ function Contacto() {
       <div className="contacto-grid">
 
         <div className="contacto-card">
-          <h2>Integrante 1</h2>
-          <p>Ignacio Veloso</p>
+          <h2>Ignacio Veloso </h2>
           <p>ivelosob@correo.uss.cl</p>
         </div>
 
         <div className="contacto-card">
-          <h2>Integrante 2</h2>
-          <p>Ignacio Castro</p>
+          <h2>Ignacio Castro</h2>
           <p>icastror2@correo.uss.cl</p>
         </div>
 
         <div className="contacto-card">
-          <h2>Integrante 3</h2>
-          <p>Jhonatan Godoy</p>
+          <h2>Jhonatan Godoy</h2>
           <p>jgodoyr4@correo.uss.cl</p>
         </div>
 
         <div className="contacto-card">
-          <h2>Integrante 4</h2>
-          <p>Matías Rodríguez</p>
+          <h2>Matías Rodríguez</h2  >
           <p>mrodriguezg8@correo.uss.cl</p>
         </div>
 
         <div className="contacto-card">
-          <h2>Integrante 5</h2>
-          <p>Matías Pérez</p>
+          <h2>Matias Pérez</h2>
           <p>mpereza16@correo.uss.cl</p>
         </div>
 
         
         <div className="contacto-card">
-          <h2>Integrante 6</h2>
-          <p>Daniela Ebner</p>
+          <h2>Daniela Ebner</h2>
           <p>debnerr@correo.uss.cl</p>
         </div>
 
         
         <div className="contacto-card">
-          <h2>Integrante 7</h2>
-          <p>Rodrigo Montiel</p>
+          <h2>Rodrigo Montiel</h2>
           <p>rmontiel@correo.uss.cl</p>
         </div>
 
         <div className="contacto-card">
-          <h2>Integrante 8</h2>
-          <p>Sebastian Rohten</p>
+          <h2>Sebastian Rohten</h2>
           <p>srohten@correo.uss.cl</p>
         </div>
 
