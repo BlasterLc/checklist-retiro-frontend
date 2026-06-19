@@ -36,6 +36,34 @@ function Contacto() {
           <p>mpereza16@correo.uss.cl</p>
         </div>
 
+        
+        <div className="contacto-card">
+          <h2>Integrante 6</h2>
+          <p>Daniela Ebner</p>
+          <p>debnerr@correo.uss.cl</p>
+        </div>
+
+        
+        <div className="contacto-card">
+          <h2>Integrante 7</h2>
+          <p>Rodrigo Montiel</p>
+          <p>rmontiel@correo.uss.cl</p>
+        </div>
+
+        <div className="contacto-card">
+          <h2>Integrante 8</h2>
+          <p>Sebastian Rohten</p>
+          <p>srohten@correo.uss.cl</p>
+        </div>
+
+
+        
+        
+
+        
+
+
+
       </div>
 
       <div className="info-proyecto">
@@ -43,19 +71,11 @@ function Contacto() {
         <h2>Información del Proyecto</h2>
 
         <p>
-          <strong>Asignatura:</strong> Aplicaciones y Tecnologías de la Web
-        </p>
-
-        <p>
           <strong>Proyecto:</strong> Sistema de Check-In para Entrega de Productos
         </p>
 
         <p>
           <strong>Institución:</strong> Universidad San Sebastián
-        </p>
-
-        <p>
-          <strong>Profesor:</strong> Rene Galarce Godoy
         </p>
 
       </div>
