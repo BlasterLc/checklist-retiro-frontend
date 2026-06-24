@@ -1,5 +1,12 @@
+@use "variables";
+
 @mixin tarjeta {
   padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(253, 253, 253, 0.2);
+  border-radius: variables.$radius-md;
+  box-shadow: variables.$shadow-soft;
+  transition: box-shadow .2s ease, transform .2s ease;
+
+  &:hover {
+    box-shadow: variables.$shadow-hover;
+  }
 }

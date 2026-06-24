@@ -1,7 +1,7 @@
 .navbar {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: .5rem;
 
   padding: 1rem;
 
@@ -14,8 +14,12 @@
   text-decoration: none;
   color: #1976d2;
   font-weight: 600;
+  padding: .5rem 1rem;
+  border-radius: 999px;
+  transition: background-color .2s ease, color .2s ease;
 }
 
 .navbar a:hover {
   color: #0d47a1;
+  background-color: rgba(25, 118, 210, .08);
 }
