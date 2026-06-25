@@ -5,29 +5,36 @@ import {
   useEffect
 } from "react";
 
+import {
+  listarProductos,
+  listarRetiros,
+  adaptarRetiroDesdeApi
+} from "../services/api";
+
 const RetiroContext = createContext();
 
 export function RetiroProvider({ children }) {
 
-  const [retiros, setRetiros] = useState(() => {
-
-    const guardados =
-      localStorage.getItem("retiros");
-
-    return guardados
-      ? JSON.parse(guardados)
-      : [];
-
-  });
+  const [retiros, setRetiros] = useState([]);
 
   useEffect(() => {
 
-    localStorage.setItem(
-      "retiros",
-      JSON.stringify(retiros)
-    );
+    Promise.all([listarProductos(), listarRetiros()])
+      .then(([productos, retirosApi]) => {
 
-  }, [retiros]);
+        setRetiros(
+          retirosApi.map((retiro) =>
+            adaptarRetiroDesdeApi(retiro, productos)
+          )
+        );
+
+      })
+      .catch(() => {
+        // Si el backend no responde, el dashboard arranca vacío en vez de romper.
+        setRetiros([]);
+      });
+
+  }, []);
 
   return (
     <RetiroContext.Provider
