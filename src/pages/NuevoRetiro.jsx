@@ -9,6 +9,7 @@ import StepProducto from "../components/Flujo/StepProducto";
 import StepConfirmacion from "../components/Flujo/StepConfirmacion";
 import StepFinal from "../components/Flujo/StepFinal";
 import { useRetiros } from "../context/RetiroContext";
+import { crearRetiro } from "../services/api";
 
 function NuevoRetiro() {
 
@@ -41,59 +42,37 @@ producto: null
 
 });
 
-const determinarEstado = () => {
+const confirmarEntrega = async () => {
 
-const hoy = new Date().toISOString().split("T")[0];
+  try {
 
-if (formulario.fechaVencimiento < hoy) {
+    const respuesta = await crearRetiro(formulario);
 
-  return {
-    estado: "Rechazado",
-    motivo: "Documento vencido"
-  };
+    const nuevoRetiro = {
+      ...formulario,
+      id: respuesta.id,
+      fecha: respuesta.fecha,
+      estado: respuesta.estado,
+      motivo: respuesta.motivo
+    };
 
-}
+    setRetiros(prev => [
+      nuevoRetiro,
+      ...prev
+    ]);
 
-if (
-  formulario.tipoRetiro === "tercero" &&
-  !formulario.autorizacion
-) {
+    setResultadoFinal({
+      estado: respuesta.estado,
+      motivo: respuesta.motivo
+    });
 
-  return {
-    estado: "Rechazado",
-    motivo: "Sin autorización"
-  };
+    setCompletado(true);
 
-}
+  } catch (error) {
 
-return {
-  estado: "Aprobado",
-  motivo: "-"
-};
+    alert("No se pudo registrar el retiro. Intente nuevamente.");
 
-};
-
-const confirmarEntrega = () => {
-
-const resultado = determinarEstado();
-
-const nuevoRetiro = {
-  id: Date.now(),
-  fecha: new Date().toLocaleString(),
-
-  estado: resultado.estado,
-  motivo: resultado.motivo,
-
-  ...formulario
-};
-
-setRetiros(prev => [
-  nuevoRetiro,
-  ...prev
-]);
-
-setResultadoFinal(resultado);
-setCompletado(true);
+  }
 
 };
 

@@ -1,10 +1,19 @@
-import { useState } from "react";
-import inventario from "../../data/inventario";
+import { useState, useEffect } from "react";
+import { listarProductos } from "../../services/api";
 
 function StepProducto({ formulario, setFormulario }) {
 
+  const [inventario, setInventario] = useState([]);
   const [codigo, setCodigo] = useState("");
   const [resultado, setResultado] = useState(null);
+
+  useEffect(() => {
+
+    listarProductos()
+      .then(setInventario)
+      .catch(() => setInventario([]));
+
+  }, []);
 
   const buscarProducto = () => {
 
