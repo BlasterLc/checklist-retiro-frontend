@@ -69,6 +69,7 @@ const confirmarEntrega = async () => {
 
   } catch (error) {
 
+    console.error(error);
     alert("No se pudo registrar el retiro. Intente nuevamente.");
 
   }
