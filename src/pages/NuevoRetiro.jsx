@@ -1,11 +1,10 @@
 import { useState } from "react";
 import Stepper from "../components/Flujo/Stepper";
 import StepOperador from "../components/Flujo/StepOperador";
-import StepCliente from "../components/Flujo/StepCliente";
+import StepPedido from "../components/Flujo/StepPedido";
 import StepDocumento from "../components/Flujo/StepDocumento";
 import StepTipoRetiro from "../components/Flujo/StepTipoRetiro";
 import StepAutorizacion from "../components/Flujo/StepAutorizacion";
-import StepProducto from "../components/Flujo/StepProducto";
 import StepConfirmacion from "../components/Flujo/StepConfirmacion";
 import StepFinal from "../components/Flujo/StepFinal";
 import { useRetiros } from "../context/RetiroContext";
@@ -24,7 +23,7 @@ const [formulario, setFormulario] = useState({
 operador: "",
 sucursal: "",
 
-cliente: "",
+pedido: null,
 
 tipoDocumento: "",
 numeroDocumento: "",
@@ -36,9 +35,7 @@ tercero: "",
 autorizacion: false,
 
 numeroAutorizacion: "",
-observaciones: "",
-
-producto: null
+observaciones: ""
 
 });
 
@@ -50,6 +47,8 @@ const confirmarEntrega = async () => {
 
     const nuevoRetiro = {
       ...formulario,
+      cliente: formulario.pedido.cliente,
+      producto: formulario.pedido.producto,
       id: respuesta.id,
       fecha: respuesta.fecha,
       estado: respuesta.estado,
@@ -83,7 +82,7 @@ setFormulario({
   operador: "",
   sucursal: "",
 
-  cliente: "",
+  pedido: null,
 
   tipoDocumento: "",
   numeroDocumento: "",
@@ -95,9 +94,7 @@ setFormulario({
   autorizacion: false,
 
   numeroAutorizacion: "",
-  observaciones: "",
-
-  producto: null
+  observaciones: ""
 });
 
 setResultadoFinal(null);
@@ -118,9 +115,9 @@ const avanzarPaso = () => {
 
   if (
     paso === 2 &&
-    !formulario.cliente
+    !formulario.pedido
   ) {
-    alert("Ingrese el nombre del cliente");
+    alert("Busque y seleccione un pedido");
     return;
   }
 
@@ -179,15 +176,7 @@ const avanzarPaso = () => {
     return;
   }
 
-  if (
-    paso === 6 &&
-    !formulario.producto
-  ) {
-    alert("Seleccione un producto");
-    return;
-  }
-
-  if (paso < 7) {
+  if (paso < 6) {
     setPaso(paso + 1);
   }
 };
@@ -219,7 +208,7 @@ return (
 
   {paso === 2 && (
 
-    <StepCliente
+    <StepPedido
       formulario={formulario}
       setFormulario={setFormulario}
       avanzarPaso={avanzarPaso}
@@ -258,16 +247,6 @@ return (
   )}
 
   {paso === 6 && (
-
-    <StepProducto
-      formulario={formulario}
-      setFormulario={setFormulario}
-      avanzarPaso={avanzarPaso}
-    />
-
-  )}
-
-  {paso === 7 && (
 
     <StepConfirmacion
       formulario={formulario}
