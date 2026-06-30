@@ -139,7 +139,8 @@ const avanzarPaso = () => {
   if (paso === 3) {
     const hoy = new Date().toISOString().split("T")[0];
     if (formulario.fechaVencimiento < hoy) {
-      alert("No se puede continuar: el documento está vencido");
+      alert("El documento está vencido. Se registrará el retiro como rechazado.");
+      confirmarEntrega();
       return;
     }
   }
@@ -165,7 +166,8 @@ const avanzarPaso = () => {
     formulario.tipoRetiro === "tercero" &&
     !formulario.autorizacion
   ) {
-    alert("Se requiere autorización para continuar");
+    alert("Sin autorización del titular. Se registrará el retiro como rechazado.");
+    confirmarEntrega();
     return;
   }
 
